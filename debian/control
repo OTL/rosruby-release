@@ -1,0 +1,12 @@
+Source: ros-groovy-rosruby
+Section: misc
+Priority: extra
+Maintainer: Takashi Ogura <t.ogura@gmail.com>
+Build-Depends: debhelper (>= 7.0.50~), libruby1.9.1, rake, ros-groovy-catkin, ruby1.9.1-dev, rubygems
+Homepage: http://ros.org/wiki/rosruby
+Standards-Version: 3.9.2
+
+Package: ros-groovy-rosruby
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-groovy-rosgraph-msgs, ros-groovy-roslang
+Description: This package is a Ruby client library for ROS, the Robot Operating System.
