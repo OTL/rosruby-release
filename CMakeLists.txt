@@ -1,12 +1,13 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(rosruby)
 
-find_package(catkin REQUIRED COMPONENTS)
+find_package(catkin REQUIRED COMPONENTS roslib)
 
 catkin_package(
-  CATKIN_DEPENDS roslang rosgraph_msgs
+  CATKIN_DEPENDS roslang rosgraph_msgs roslib
   DEPENDS ruby
 )
+
 
 #
 # macro definitions
@@ -14,11 +15,13 @@ catkin_package(
 macro(rosruby_setup)
   set(ROSRUBY_DEVEL_LIB_DESTINATION ${CATKIN_DEVEL_PREFIX}/lib/ruby/vendor_ruby)
   set(ROSRUBY_LIB_DESTINATION ${CATKIN_GLOBAL_LIB_DESTINATION}/ruby/vendor_ruby)
+  set(ROSRUBY_DEVEL_GENMSG ${ROSRUBY_DEVEL_LIB_DESTINATION}/rosruby_genmsg.py)
 endmacro()
 
 macro(rosruby_generate_messages)
   add_custom_target(rosruby_genmsg_${PROJECT_NAME} ALL
-    COMMAND rosrun rosruby rosruby_genmsg.py -d ${ROSRUBY_DEVEL_LIB_DESTINATION} ${ARGN})
+    COMMAND ${ROSRUBY_DEVEL_GENMSG} -d ${ROSRUBY_DEVEL_LIB_DESTINATION} ${ARGN}
+    DEPENDS rosruby_devel_mkdir)
   install(DIRECTORY ${ROSRUBY_DEVEL_LIB_DESTINATION}/msg/
     DESTINATION ${ROSRUBY_LIB_DESTINATION}/msg
     )
@@ -46,7 +49,10 @@ catkin_add_env_hooks(rosruby SHELLS sh DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/env
 rosruby_generate_messages(rosgraph_msgs std_msgs roscpp_tutorials)
 
 add_custom_target(rosruby_devel_mkdir ALL
-  COMMAND ${CMAKE_COMMAND} -E make_directory ${ROSRUBY_DEVEL_LIB_DESTINATION})
+  COMMAND ${CMAKE_COMMAND} -E make_directory ${ROSRUBY_DEVEL_LIB_DESTINATION}
+  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/scripts/genmsg_ruby.py ${ROSRUBY_DEVEL_LIB_DESTINATION}
+  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/scripts/gensrv_ruby.py ${ROSRUBY_DEVEL_LIB_DESTINATION}
+  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/scripts/rosruby_genmsg.py ${ROSRUBY_DEVEL_LIB_DESTINATION})
 
 install(PROGRAMS
   bin/rubyroscore
