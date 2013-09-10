@@ -1,0 +1,18 @@
+ros-hydro-rosruby (0.4.0-0raring) raring; urgency=high
+
+  * use catkin_add_hook for ROSLIB environment
+  * color local log like rospy/roscpp
+    * ERROR/FATAL => red
+    * WARN => yellow
+  * wait until master connection
+  * change genmsg output dir to catkin lib dir
+
+ -- Takashi Ogura <t.ogura@gmail.com>  Mon, 09 Sep 2013 15:00:00 -0000
+
+ros-hydro-rosruby (0.3.0-0raring) raring; urgency=high
+
+  * catkinized
+
+ -- Takashi Ogura <t.ogura@gmail.com>  Wed, 04 Sep 2013 15:00:00 -0000
+
+
