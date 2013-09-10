@@ -1,7 +1,0 @@
-ros-hydro-rosruby (0.3.0-0precise) precise; urgency=high
-
-  * catkinized
-
- -- Takashi Ogura <t.ogura@gmail.com>  Wed, 04 Sep 2013 15:00:00 -0000
-
-
