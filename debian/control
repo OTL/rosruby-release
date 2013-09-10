@@ -1,0 +1,12 @@
+Source: ros-hydro-rosruby
+Section: misc
+Priority: extra
+Maintainer: Takashi Ogura <t.ogura@gmail.com>
+Build-Depends: debhelper (>= 7.0.50~), libruby1.9.1, rake, ros-hydro-catkin, ros-hydro-roslib, ruby1.9.1-dev, rubygems
+Homepage: http://ros.org/wiki/rosruby
+Standards-Version: 3.9.2
+
+Package: ros-hydro-rosruby
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-hydro-rosgraph-msgs, ros-hydro-roslang, ros-hydro-roslib
+Description: This package is a Ruby client library for ROS, the Robot Operating System.
