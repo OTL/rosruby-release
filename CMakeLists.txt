@@ -14,6 +14,7 @@ catkin_package(
   DEPENDS ruby
   )
 
+catkin_python_setup()
 
 rosruby_setup()
 
@@ -28,6 +29,7 @@ rosruby_generate_messages(std_msgs rosgraph_msgs)
 install(PROGRAMS
   bin/rubyroscore
   scripts/rosruby_genmsg.py
+  scripts/genrb_pkg.sh
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

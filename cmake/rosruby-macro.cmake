@@ -18,21 +18,13 @@ endmacro()
 
 macro(rosruby_generate_messages)
   add_custom_target(rosruby_genmsg_for_${PROJECT_NAME} ALL
-    COMMAND ${ROSRUBY_GENMSG_DIR}/rosruby_genmsg.py ${ARGN}
+    COMMAND ${ROSRUBY_GENMSG_DIR}/genrb_pkg.sh ${ARGN}
     -d ${ROSRUBY_DEVEL_LIB_DESTINATION}
     )
   foreach(package ${ARGN})
-    if(EXISTS ${ROSRUBY_DEVEL_LIB_DESTINATION}/msg/${package})
-      install(DIRECTORY
-	${ROSRUBY_DEVEL_LIB_DESTINATION}/msg/${package}
-	DESTINATION ${ROSRUBY_LIB_DESTINATION}
-	)
-    endif()
-    if(EXISTS ${ROSRUBY_DEVEL_LIB_DESTINATION}/srv/${package})
-      install(DIRECTORY
-	${ROSRUBY_DEVEL_LIB_DESTINATION}/srv/${package}
-	DESTINATION ${ROSRUBY_LIB_DESTINATION}
-	)
-    endif()
+    install(DIRECTORY
+      ${ROSRUBY_DEVEL_LIB_DESTINATION}/${package}
+      DESTINATION ${ROSRUBY_LIB_DESTINATION}
+      )
   endforeach()
 endmacro()
