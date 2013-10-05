@@ -8,12 +8,12 @@
 import sys
 import os
 
-from genrb.generator import msg_generator
-from genrb.generator import srv_generator
 from rospkg import RosPack
 
 import genmsg
 import rosmsg
+from genrb.generator import msg_generator
+from genrb.generator import srv_generator
 
 def get_all_deps(packages):
     rp = RosPack()
