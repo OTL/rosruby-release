@@ -2,6 +2,13 @@
 Changelog for package rosruby
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.5.3 (2013-10-19)
+------------------
+* remove shell script and use CATKIN_ENV
+* add message_generation depends and add mkdir in macro
+* add genmsg for depends
+* add python executable
+
 0.5.2 (2013-10-03)
 ------------------
 * add setup.py for resolve genrb
